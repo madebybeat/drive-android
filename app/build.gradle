@@ -22,17 +22,44 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
 }
 
 dependencies {
+    implementation project(':core')
 
     implementation libs.appcompat
     implementation libs.material
+    implementation libs.hilt.android
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    implementation libs.hilt.android
+    annotationProcessor libs.hilt.compiler
+
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+
+    implementation libs.httpclient
+    implementation libs.volley
+    implementation libs.gson
+
+    implementation libs.media3.exoplayer
+    implementation libs.media3.datasource.okhttp
+
+    implementation libs.javascriptengine
 }
