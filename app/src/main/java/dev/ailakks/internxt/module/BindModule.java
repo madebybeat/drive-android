@@ -12,6 +12,8 @@ import dagger.Provides;
 import dagger.hilt.InstallIn;
 import dagger.hilt.components.SingletonComponent;
 import dev.ailakks.internxt.AppMainActivity;
+import dev.ailakks.internxt.page.AppHomePage;
+import dev.ailakks.internxt.page.AppPages;
 
 @Module
 @InstallIn(SingletonComponent.class)
