@@ -1,3 +1,6 @@
 [submodule "core"]
 	path = core
 	url = https://github.com/activmediaplay/core
+[submodule "sdk"]
+	path = app/src/main/assets/internxt/sdk
+	url = https://github.com/activmediacorp/internxt-crypto
