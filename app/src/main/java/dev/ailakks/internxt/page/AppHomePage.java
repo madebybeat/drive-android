@@ -16,6 +16,7 @@ import com.beatstreaming.core.pages.HomePage;
 import dagger.hilt.android.AndroidEntryPoint;
 import dev.ailakks.internxt.databinding.HomePageBinding;
 import dev.ailakks.internxt.web.WebViewClient;
+import dev.ailakks.internxt.web.WebViewInterface;
 
 @AndroidEntryPoint
 public class AppHomePage extends HomePage {
@@ -33,6 +34,8 @@ public class AppHomePage extends HomePage {
         settings.setAllowUniversalAccessFromFileURLs(true);
 
         webView.loadUrl("file:///android_asset/internxt/sdk/public/index.html");
+
+        webView.addJavascriptInterface(new WebViewInterface(), "Android");
 
         webView.setWebViewClient(new WebViewClient());
 
