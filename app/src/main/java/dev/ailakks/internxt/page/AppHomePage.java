@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
@@ -30,13 +31,16 @@ public class AppHomePage extends HomePage {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setAllowUniversalAccessFromFileURLs(true);
 
         webView.loadUrl("file:///android_asset/internxt/sdk/public/index.html");
 
-        webView.evaluateJavascript("Internxt.Auth.client('https://gateway.internxt.com/drive', { clientName: 'internxt android', clientVersion: '1.0' }).login({ email: '', password: '', tfaCode: '' }, Internxt.cryptoProvider);", new ValueCallback<String>() {
+        webView.setWebViewClient(new WebViewClient() {
             @Override
-            public void onReceiveValue(String value) {
-                System.out.println(value);
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                webView.evaluateJavascript("Internxt.Auth.client('https://api.internxt.com/drive', { clientName: 'internxt-android', clientVersion: '1.0' }).login({ email: '', password: '', tfaCode: '' }, Internxt.cryptoProvider);", System.out::println);
             }
         });
 
