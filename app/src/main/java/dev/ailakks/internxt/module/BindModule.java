@@ -3,7 +3,6 @@ package dev.ailakks.internxt.module;
 import com.beatstreaming.core.MainActivity;
 import com.beatstreaming.core.pages.HomePage;
 import com.beatstreaming.core.pages.Pages;
-import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 

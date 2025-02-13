@@ -12,6 +12,9 @@ import androidx.annotation.NonNull;
 
 import com.beatstreaming.core.MainActivity;
 import com.beatstreaming.core.pages.HomePage;
+import com.google.gson.Gson;
+
+import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import dev.ailakks.internxt.databinding.HomePageBinding;
@@ -21,6 +24,8 @@ import dev.ailakks.internxt.web.WebViewInterface;
 @AndroidEntryPoint
 public class AppHomePage extends HomePage {
     private HomePageBinding homePageBinding;
+
+    @Inject Gson gson;
 
     @SuppressLint("SetJavaScriptEnabled")
     @Override
@@ -35,7 +40,7 @@ public class AppHomePage extends HomePage {
 
         webView.loadUrl("file:///android_asset/internxt/sdk/public/index.html");
 
-        webView.addJavascriptInterface(new WebViewInterface(), "Android");
+        webView.addJavascriptInterface(new WebViewInterface(this.gson), "Android");
 
         webView.setWebViewClient(new WebViewClient());
 
