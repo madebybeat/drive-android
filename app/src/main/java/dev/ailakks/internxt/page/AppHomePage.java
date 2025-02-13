@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.ValueCallback;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
 
@@ -17,6 +15,7 @@ import com.beatstreaming.core.pages.HomePage;
 
 import dagger.hilt.android.AndroidEntryPoint;
 import dev.ailakks.internxt.databinding.HomePageBinding;
+import dev.ailakks.internxt.web.WebViewClient;
 
 @AndroidEntryPoint
 public class AppHomePage extends HomePage {
@@ -35,14 +34,7 @@ public class AppHomePage extends HomePage {
 
         webView.loadUrl("file:///android_asset/internxt/sdk/public/index.html");
 
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-
-                webView.evaluateJavascript("Internxt.Auth.client('https://api.internxt.com/drive', { clientName: 'internxt-android', clientVersion: '1.0' }).login({ email: '', password: '', tfaCode: '' }, Internxt.cryptoProvider);", System.out::println);
-            }
-        });
+        webView.setWebViewClient(new WebViewClient());
 
         return this.homePageBinding.getRoot();
     }
